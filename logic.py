@@ -156,6 +156,7 @@ class Logic(QMainWindow, Ui_MainWindow):
                 for line in file:
                     line = line.rstrip()
                     if re.search(newname, line[0]):
+                        self.errorthing.setText(f'{line[0]} is already here')
                         found = True
 
             if not found:
@@ -209,6 +210,7 @@ class Logic(QMainWindow, Ui_MainWindow):
                         if re.search(self.editname.text(), line[0]):
                             found = True
                             line[1] = str(float(self.editscore.text()))
+                            line[2] = lettergetter(float(line[1]), self.current_high)
                             writer.writerow([line[0], line[1], line[2]])
                         else:
                             writer.writerow(line)
@@ -286,11 +288,11 @@ class Logic(QMainWindow, Ui_MainWindow):
                         self.studentcolm.setText(bing)
                         self.scorecolm.setText(ding)
                         self.lettercolm.setText(ring)
-                        self.editname.setEnabled(False)
-                        self.editscore.setEnabled(False)
-                        self.edit.setEnabled(False)
-                        self.removename.setEnabled(False)
-                        self.remove.setEnabled(False)
+                        # self.editname.setEnabled(False)
+                        # self.editscore.setEnabled(False)
+                        # self.edit.setEnabled(False)
+                        # self.removename.setEnabled(False)
+                        # self.remove.setEnabled(False)
 
         except NameError:
             self.errorthing.setText('Enter a name on the list')
